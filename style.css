@@ -1,0 +1,129 @@
+:root {
+    --warna-utama: #ff7a00;         /* Orange cerah untuk tombol CTA, link, dan elemen aktif */
+    --warna-latar-gelap: #2c2520;   /* Cokelat sangat gelap (warm dark) pengganti hitam/biru tua */
+    --warna-latar-terang: #fdfaf4;  /* Warna Cream lembut yang hangat untuk latar belakang utama */
+    --warna-kartu: #ffffff;         /* Putih bersih agar elemen kartu tetap kontras dan modern */
+    --warna-teks-utama: #1c120c;    /* Cokelat tua gelap (bukan hitam pekat) agar serasi dengan cream */
+    --warna-teks-sekunder: #756357; /* Cokelat medium untuk teks pendukung atau sub-judul */
+    --warna-teks-putih: #ffffff;     /* Putih bersih untuk teks di atas latar belakang orange/gelap */
+    --warna-bayangan: rgba(117, 99, 87, 0.1); /* Bayangan dengan tone hangat lembut agar natural */
+}
+
+* { /* selector global */
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: var(--warna-utama);
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 5px;
+}
+
+.nav-links li a {
+    font-size: 2.2vh;
+    color: #f2f2f2;
+    text-decoration: none;
+    padding: 8px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links li a:hover{
+    background-color: var(--warna-latar-terang);
+    color: var(--warna-teks-utama);
+    border-radius: 4px;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;   
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #f2f2f2;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 50px 50px 50px; 
+}
+
+#home {
+    background-color: var(--warna-latar-gelap);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.655)), url(/asssets/secondImage-2025-09-17T15-16-17-247Z.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#home h1,p{
+    color: var(--warna-teks-putih);
+}
+
+#about{
+    background-color: #ff7a00;
+}
+
+#experience{
+    background-color: var(--warna-latar-gelap);
+}
+
+#contact {
+    background-color: var(--warna-latar-terang);
+}
+
+@media screen and (max-width: 720px) {
+    .nav-links{
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: var(--warna-utama);
+        width: 100%;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    .nav-links.tampil{
+        display: flex;
+    }
+
+    .nav-links li{
+        margin: 15px 0;
+    }
+
+    .burger{
+        display: block;
+    }
+}
