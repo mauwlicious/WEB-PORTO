@@ -80,7 +80,7 @@ nav {
 
 #home {
     background-color: var(--warna-latar-gelap);
-    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.655)), url(/asssets/gedungith.jpg);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.655)), url(assets/gedungith.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
