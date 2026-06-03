@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Little Bolu Ketan</title>
+
+    <!-- ============================================================
+         📌 JUDUL TAB BROWSER
+         → Ganti "Nama Kamu | Portfolio" sesuai namamu
+    ============================================================ -->
+    <title>Nama Kamu | Portfolio</title>
+
+    <!-- Google Fonts — font utama website ini -->
+    <!-- ============================================================
+         🔤 MENGGANTI FONT
+         → Pergi ke https://fonts.google.com
+         → Pilih font, klik "Get embed code"
+         → Tempel link baru di sini, lalu ganti nama font di style.css
+         → Di style.css cari bagian "-- font-judul" dan "-- font-teks"
+    ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
+
+    <!-- ============================================================
+         🔝 NAVIGASI (NAVBAR)
+         → Bagian ini selalu terlihat di atas layar (fixed)
+    ============================================================ -->
+    <nav id="navbar">
         <div class="logo">
-            <h1>MyWeb</h1>
+            <!-- 📌 Ganti "MyPorto" dengan nama atau inisialmu -->
+            <span>MyPorto</span>
         </div>
+
         <ul class="nav-links" id="menu">
-            <li><a href="#home">home</a></li>
-            <li><a href="#about">about</a></li>
-            <li><a href="#experience">exp</a></li>
-            <li><a href="#contact">contact</a></li>
+            <!-- 📌 Ganti teks menu sesuai kebutuhan -->
+            <!-- "href" mengarahkan ke section dengan id yang sama -->
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
+
+        <!-- Tombol hamburger untuk tampilan mobile -->
         <div class="burger" id="btn-burger">
             <div></div>
             <div></div>
@@ -24,23 +53,286 @@
         </div>
     </nav>
 
-    <div class="hero" id="home">
-        <h1>Welcome to MyWeb</h1>
-        <p>This is my web, ak member hcc dan ak bangga</p>
-    </div>
 
-    <div class="hero" id="about">
+    <!-- ============================================================
+         🏠 SECTION HOME
+         → Halaman pertama yang dilihat pengunjung
+    ============================================================ -->
+    <section class="hero" id="home">
 
-    </div>
+        <!-- Lapisan gelap di atas background agar teks terbaca -->
+        <div class="hero-overlay"></div>
 
-    <div class="hero" id="experience">
+        <div class="hero-content">
+            <!-- 📌 Ganti tulisan di bawah ini -->
+            <p class="hero-label">👋 Halo, saya</p>
+            <h1 class="hero-title">Nama Lengkap Kamu</h1>
+            <p class="hero-subtitle">
+                <!-- 📌 Ganti dengan deskripsi singkat tentang dirimu -->
+                Member HCC · Web Developer · Pecinta Bolu Ketan
+            </p>
 
-    </div>
+            <!-- Tombol CTA (Call to Action) -->
+            <div class="hero-buttons">
+                <!-- 📌 Href "#about" → scroll ke section About -->
+                <a href="#about" class="btn btn-primary">Kenali Saya</a>
+                <!-- 📌 Href "#contact" → scroll ke section Contact -->
+                <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+            </div>
+        </div>
 
-    <div class="hero" id="contact">
+        <!-- Hiasan gelombang di bagian bawah section -->
+        <div class="wave-bottom">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--warna-latar-terang)"/>
+            </svg>
+        </div>
 
-    </div>
+    </section>
 
+
+    <!-- ============================================================
+         👤 SECTION ABOUT
+         → Foto profil + perkenalan diri
+    ============================================================ -->
+    <section class="hero" id="about">
+
+        <div class="about-container">
+
+            <!-- FOTO PROFIL -->
+            <div class="about-photo-wrapper">
+                <!-- ============================================================
+                     📷 MENGGANTI FOTO PROFIL
+                     → Simpan foto kamu di folder assets/
+                     → Ganti nilai "src" menjadi path fotomu, contoh:
+                       src="assets/foto-profil.jpg"
+                     → Untuk foto dari internet, tempel URL langsung di src
+                ============================================================ -->
+                <img
+                    src="https://placehold.co/300x300/ff7a00/fff?text=Foto+Kamu"
+                    alt="Foto Profil"
+                    class="about-photo"
+                >
+
+                <!-- Cincin dekoratif di sekitar foto -->
+                <div class="about-photo-ring"></div>
+            </div>
+
+            <!-- TEKS PERKENALAN -->
+            <div class="about-text">
+
+                <p class="section-label">Tentang Saya</p>
+
+                <!-- 📌 Ganti dengan namamu -->
+                <h2 class="section-title">Halo! Saya <span>Nama Kamu</span></h2>
+
+                <!-- 📌 Ganti paragraf di bawah ini dengan cerita tentang dirimu -->
+                <p class="about-desc">
+                    Perkenalkan, saya adalah mahasiswa yang aktif di komunitas
+                    <strong>HCC (Himpunan Coding Club)</strong>. Saya memiliki ketertarikan
+                    di bidang web development dan desain UI/UX.
+                </p>
+
+                <p class="about-desc">
+                    <!-- 📌 Tambahkan cerita lebih atau hapus paragraf ini -->
+                    Saya senang belajar teknologi baru dan berkontribusi pada proyek-proyek
+                    yang berdampak. Di waktu luang, saya suka membaca dan mencoba resep makanan baru.
+                </p>
+
+                <!-- DAFTAR KEAHLIAN/BADGE -->
+                <div class="about-skills">
+                    <!-- 📌 Tambah atau hapus badge sesuai keahlianmu -->
+                    <span class="skill-badge">HTML & CSS</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">Figma</span>
+                    <span class="skill-badge">Git</span>
+                    <!-- Contoh menambah badge baru: -->
+                    <!-- <span class="skill-badge">React</span> -->
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ============================================================
+         💼 SECTION EXPERIENCE (CAROUSEL)
+         → Menampilkan pengalaman/proyek dalam format slide
+    ============================================================ -->
+    <section class="hero" id="experience">
+
+        <p class="section-label light">Pengalaman</p>
+        <h2 class="section-title light">Yang Sudah Saya Kerjakan</h2>
+
+        <!-- Wrapper carousel -->
+        <div class="carousel-wrapper">
+
+            <!-- Semua slide ada di dalam sini -->
+            <div class="carousel-track" id="carousel-track">
+
+                <!-- ============================================================
+                     🖼️ SLIDE 1
+                     → Ganti background gambar di style.css bagian ".slide-1"
+                     → Ganti teks di dalam .glass-card
+                ============================================================ -->
+                <div class="carousel-slide slide-1">
+                    <div class="glass-card">
+                        <!-- 📌 Ganti ikon emoji sesuai tema pengalamanmu -->
+                        <span class="exp-icon">🌐</span>
+                        <!-- 📌 Ganti judul pengalaman -->
+                        <h3>Web Development</h3>
+                        <!-- 📌 Ganti deskripsi -->
+                        <p>Membangun website portfolio dan landing page menggunakan HTML, CSS, dan JavaScript murni. Fokus pada desain responsif dan pengalaman pengguna.</p>
+                        <!-- 📌 Ganti tahun atau periode -->
+                        <span class="exp-year">2023 – Sekarang</span>
+                    </div>
+                </div>
+
+                <!-- SLIDE 2 -->
+                <div class="carousel-slide slide-2">
+                    <div class="glass-card">
+                        <span class="exp-icon">🎨</span>
+                        <!-- 📌 Ganti sesuai pengalamanmu -->
+                        <h3>UI/UX Design</h3>
+                        <p>Merancang antarmuka aplikasi menggunakan Figma. Membuat wireframe, prototype interaktif, dan panduan desain untuk tim pengembang.</p>
+                        <span class="exp-year">2022 – 2023</span>
+                    </div>
+                </div>
+
+                <!-- SLIDE 3 -->
+                <div class="carousel-slide slide-3">
+                    <div class="glass-card">
+                        <span class="exp-icon">🤝</span>
+                        <!-- 📌 Ganti sesuai pengalamanmu -->
+                        <h3>Organisasi HCC</h3>
+                        <p>Aktif sebagai anggota Himpunan Coding Club, berpartisipasi dalam workshop, hackathon, dan proyek kolaborasi bersama rekan-rekan sesama developer.</p>
+                        <span class="exp-year">2022 – Sekarang</span>
+                    </div>
+                </div>
+
+                <!-- ============================================================
+                     ➕ MENAMBAH SLIDE BARU
+                     → Salin blok di atas (dari <!-- SLIDE -->  hingga </div>)
+                     → Tempel di bawah slide terakhir
+                     → Beri class baru misal "slide-4"
+                     → Tambahkan CSS .slide-4 { background-image: url(...) }
+                     → Update total slide di script.js bagian "totalSlides"
+                ============================================================ -->
+
+            </div><!-- akhir carousel-track -->
+
+            <!-- Tombol navigasi carousel -->
+            <button class="carousel-btn prev" id="btn-prev">&#8592;</button>
+            <button class="carousel-btn next" id="btn-next">&#8594;</button>
+
+            <!-- Indikator titik (dot) -->
+            <div class="carousel-dots" id="carousel-dots">
+                <!-- Dot dibuat otomatis oleh JavaScript -->
+            </div>
+
+        </div><!-- akhir carousel-wrapper -->
+
+    </section>
+
+
+    <!-- ============================================================
+         📞 SECTION CONTACT
+         → Tautan ke WhatsApp, Instagram, dan Facebook
+    ============================================================ -->
+    <section class="hero" id="contact">
+
+        <p class="section-label">Hubungi Saya</p>
+        <h2 class="section-title">Mari Terhubung! 🤙</h2>
+        <p class="contact-subtitle">
+            <!-- 📌 Ganti teks deskripsi ini -->
+            Terbuka untuk kolaborasi, diskusi, atau sekadar ngobrol santai.
+        </p>
+
+        <!-- Kartu-kartu kontak -->
+        <div class="contact-cards">
+
+            <!-- KARTU WHATSAPP -->
+             <!-- 📱 MENGGANTI NOMOR WHATSAPP
+                     → Ganti "628123456789" dengan nomor WA kamu
+                     → Format: 62 (kode Indonesia) + nomor tanpa angka 0 di depan
+                     → Contoh: 0812-3456-789 → 628123456789 -->
+            <a
+                href="https://wa.me/628123456789"
+                target="_blank"
+                class="contact-card wa"
+            >
+                <div class="contact-icon">
+                    <!-- Ikon WhatsApp (SVG bawaan, tidak perlu diganti) -->
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.527 5.845L.057 23.882l6.198-1.625A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.359-.213-3.68.965.982-3.59-.234-.369A9.818 9.818 0 1112 21.818z"/></svg>
+                </div>
+                <div class="contact-info">
+                    <span class="contact-platform">WhatsApp</span>
+                    <!-- 📌 Ganti dengan nama tampilan / nomormu -->
+                    <span class="contact-handle">+62 812-3456-789</span>
+                </div>
+                <span class="contact-arrow">→</span>
+            </a>
+
+            <!-- KARTU INSTAGRAM -->
+             <!-- ============================================================
+                     📸 MENGGANTI USERNAME INSTAGRAM
+                     → Ganti "usernamemu" di bawah dengan username IG kamu
+                ============================================================ -->
+            <a
+                
+                href="https://instagram.com/usernamemu"
+                target="_blank"
+                class="contact-card ig"
+            >
+                <div class="contact-icon">
+                    <!-- Ikon Instagram (SVG bawaan) -->
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </div>
+                <div class="contact-info">
+                    <span class="contact-platform">Instagram</span>
+                    <!-- 📌 Ganti dengan username IG kamu -->
+                    <span class="contact-handle">@usernamemu</span>
+                </div>
+                <span class="contact-arrow">→</span>
+            </a>
+
+            <!-- KARTU FACEBOOK -->
+             <!-- ============================================================
+                     👤 MENGGANTI PROFIL FACEBOOK
+                     → Ganti "usernamemu" dengan username atau ID FB kamu
+                ============================================================ -->
+            <a
+                
+                href="https://facebook.com/usernamemu"
+                target="_blank"
+                class="contact-card fb"
+            >
+                <div class="contact-icon">
+                    <!-- Ikon Facebook (SVG bawaan) -->
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </div>
+                <div class="contact-info">
+                    <span class="contact-platform">Facebook</span>
+                    <!-- 📌 Ganti dengan nama atau username FB kamu -->
+                    <span class="contact-handle">Nama Kamu</span>
+                </div>
+                <span class="contact-arrow">→</span>
+            </a>
+
+        </div><!-- akhir contact-cards -->
+
+        <!-- Footer kecil di bagian bawah -->
+        <p class="footer-text">
+            <!-- 📌 Ganti nama di sini -->
+            © 2024 Nama Kamu · Dibuat dengan ❤️
+        </p>
+
+    </section>
+
+
+    <!-- Script JS dipanggil di paling bawah agar HTML selesai dimuat dulu -->
     <script src="script.js"></script>
+
 </body>
 </html>

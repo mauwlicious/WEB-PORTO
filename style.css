@@ -1,129 +1,833 @@
+/* ================================================================
+   🎨 PANDUAN KUSTOMISASI CSS
+   ================================================================
+   File ini mengatur tampilan semua elemen di website.
+   Semua warna & font bisa diubah di bagian ":root" di bawah ini.
+   Cukup ubah nilai di :root, seluruh website akan berubah otomatis!
+   ================================================================ */
+
+
+/* ================================================================
+   🎨 VARIABEL WARNA DAN FONT (UBAH DI SINI!)
+   ================================================================
+   Ini adalah "pusat kontrol" tampilanmu.
+   Setiap variabel bisa dipakai berulang di seluruh file CSS.
+
+   Format: --nama-variabel: nilai;
+   Contoh: --warna-utama: #ff7a00; (kode warna HEX)
+
+   🛠️ Tips mencari warna HEX:
+   → Pergi ke https://colorhunt.co atau https://coolors.co
+   ================================================================ */
 :root {
-    --warna-utama: #ff7a00;         /* Orange cerah untuk tombol CTA, link, dan elemen aktif */
-    --warna-latar-gelap: #2c2520;   /* Cokelat sangat gelap (warm dark) pengganti hitam/biru tua */
-    --warna-latar-terang: #fdfaf4;  /* Warna Cream lembut yang hangat untuk latar belakang utama */
-    --warna-kartu: #ffffff;         /* Putih bersih agar elemen kartu tetap kontras dan modern */
-    --warna-teks-utama: #1c120c;    /* Cokelat tua gelap (bukan hitam pekat) agar serasi dengan cream */
-    --warna-teks-sekunder: #756357; /* Cokelat medium untuk teks pendukung atau sub-judul */
-    --warna-teks-putih: #ffffff;     /* Putih bersih untuk teks di atas latar belakang orange/gelap */
-    --warna-bayangan: rgba(117, 99, 87, 0.1); /* Bayangan dengan tone hangat lembut agar natural */
+    /* === WARNA UTAMA === */
+    --warna-utama: #ff7a00;         /* Oranye → dipakai di navbar, tombol, aksen */
+    --warna-utama-gelap: #d96400;   /* Oranye lebih gelap → dipakai saat hover tombol */
+
+    /* === WARNA LATAR BELAKANG === */
+    --warna-latar-gelap: #1e1812;   /* Cokelat gelap → latar section Home & Experience */
+    --warna-latar-terang: #fdfaf4;  /* Krem lembut → latar section About & Contact */
+
+    /* === WARNA TEKS === */
+    --warna-teks-utama: #1c120c;    /* Cokelat tua → teks di atas latar terang */
+    --warna-teks-sekunder: #756357; /* Cokelat medium → teks pendukung */
+    --warna-teks-putih: #ffffff;    /* Putih → teks di atas latar gelap */
+
+    /* === WARNA KARTU & EFEK === */
+    --warna-kartu: #ffffff;         /* Putih bersih → background kartu */
+    --warna-bayangan: rgba(117, 99, 87, 0.15); /* Bayangan hangat */
+
+    /* ================================================================
+       🔤 FONT WEBSITE
+       ================================================================
+       Cara mengganti font:
+       1. Pergi ke https://fonts.google.com
+       2. Pilih font yang kamu suka
+       3. Klik "Get embed code" → salin link <link href="...">
+       4. Tempel di <head> index.html (ganti link lama)
+       5. Ubah nilai font di bawah ini sesuai nama font baru
+          Contoh: 'Roboto', 'Poppins', 'Montserrat', dll.
+       ================================================================ */
+    --font-judul: 'Playfair Display', serif;   /* Font untuk heading / judul besar */
+    --font-teks:  'DM Sans', sans-serif;       /* Font untuk paragraf & teks biasa */
+
+    /* === UKURAN & JARAK === */
+    --radius: 16px;         /* Sudut melengkung kartu/tombol */
+    --radius-bulat: 999px;  /* Sudut sangat bulat (untuk badge/pill) */
+    --transisi: 0.3s ease;  /* Kecepatan animasi hover/transisi */
 }
 
-* { /* selector global */
-    box-sizing: border-box;
-    margin:0;
-    padding:0;
-    font-family: Arial, Helvetica, sans-serif;
-    scroll-behavior: smooth;
+
+/* ================================================================
+   🔄 RESET DAN DASAR
+   Menghapus margin & padding bawaan browser agar konsisten
+   ================================================================ */
+*, *::before, *::after {
+    box-sizing: border-box; /* Lebar elemen termasuk padding & border */
+    margin: 0;
+    padding: 0;
 }
 
-
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: var(--warna-utama);
-    color: white;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 10;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+html {
+    scroll-behavior: smooth; /* Scroll mulus saat klik link navigasi */
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-}
-
-.nav-links li {
-    margin: 0 5px;
-}
-
-.nav-links li a {
-    font-size: 2.2vh;
-    color: #f2f2f2;
-    text-decoration: none;
-    padding: 8px 10px;
-    transition: background-color 0.3s ease;
-}
-
-.nav-links li a:hover{
+body {
+    font-family: var(--font-teks); /* Pakai font teks dari variabel */
     background-color: var(--warna-latar-terang);
     color: var(--warna-teks-utama);
-    border-radius: 4px;
+    overflow-x: hidden; /* Sembunyikan scroll horizontal yang tidak disengaja */
 }
 
+
+/* ================================================================
+   🔝 NAVBAR (NAVIGASI ATAS)
+   ================================================================ */
+nav {
+    display: flex;                  /* Susun elemen dalam satu baris */
+    justify-content: space-between; /* Beri jarak antara logo & menu */
+    align-items: center;            /* Rata tengah secara vertikal */
+    padding: 0 50px;
+    height: 70px;
+    background-color: var(--warna-utama);
+    color: var(--warna-teks-putih);
+    position: fixed;   /* Menempel di atas layar meskipun halaman di-scroll */
+    width: 100%;
+    top: 0;
+    z-index: 100;      /* Angka besar → tampil di atas elemen lain */
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2); /* Bayangan bawah navbar */
+    transition: background-color var(--transisi); /* Animasi saat navbar berubah */
+}
+
+/* Navbar versi bening saat halaman belum di-scroll (efek scroll diatur di JS) */
+nav.scrolled {
+    background-color: rgba(255, 122, 0, 0.95);
+    backdrop-filter: blur(10px); /* Efek blur kaca */
+}
+
+/* Teks logo / nama di navbar */
+.logo span {
+    font-family: var(--font-judul);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--warna-teks-putih);
+}
+
+/* Daftar link menu navigasi */
+.nav-links {
+    display: flex;
+    list-style: none; /* Hapus bullet bawaan <ul> */
+    gap: 5px;         /* Jarak antar item menu */
+}
+
+/* Setiap link di dalam menu */
+.nav-links li a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none; /* Hapus garis bawah bawaan link */
+    padding: 8px 14px;
+    border-radius: var(--radius-bulat);
+    transition: all var(--transisi);
+}
+
+/* Efek saat mouse melayang di atas link menu */
+.nav-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--warna-teks-putih);
+}
+
+/* Tombol hamburger (3 garis) — hanya muncul di layar kecil (mobile) */
 .burger {
-    display: none;
-    cursor: pointer;   
+    display: none;  /* Awalnya tersembunyi; muncul lewat media query di bawah */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
 }
 
 .burger div {
     width: 25px;
     height: 3px;
-    background-color: #f2f2f2;
-    margin: 5px;
-    transition: all 0.3s ease;
+    background-color: var(--warna-teks-putih);
+    border-radius: 3px;
+    transition: all var(--transisi);
 }
 
+
+/* ================================================================
+   🏠 SECTION UMUM (HERO)
+   Semua section (home, about, dll.) pakai class .hero sebagai dasar
+   ================================================================ */
 .hero {
-    min-height: 100vh;
+    min-height: 100vh;            /* Tinggi minimal = tinggi penuh layar */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 50px 50px 50px; 
+    flex-direction: column;       /* Tumpuk konten secara vertikal */
+    justify-content: center;      /* Tengahkan konten secara vertikal */
+    align-items: center;          /* Tengahkan konten secara horizontal */
+    padding: 100px 50px 60px;     /* Atas lebih besar karena ada navbar tetap */
+    position: relative;           /* Dibutuhkan agar elemen anak bisa absolute */
+    overflow: hidden;             /* Sembunyikan konten yang keluar batas */
 }
 
-#home {
-    background-color: var(--warna-latar-gelap);
-    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.655)), url(assets/gedungith.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+/* Label kecil di atas judul section ("Tentang Saya", dll.) */
+.section-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;   /* Jadikan huruf kapital semua */
+    color: var(--warna-utama);
+    margin-bottom: 10px;
 }
 
-#home h1,p{
+/* Variasi label untuk section berlatar gelap */
+.section-label.light {
+    color: rgba(255, 200, 120, 0.9);
+}
+
+/* Judul utama tiap section */
+.section-title {
+    font-family: var(--font-judul);
+    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Ukuran fleksibel sesuai layar */
+    color: var(--warna-teks-utama);
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Variasi judul untuk section berlatar gelap */
+.section-title.light {
     color: var(--warna-teks-putih);
 }
 
-#about{
-    background-color: #ff7a00;
+/* Kata bertanda khusus di dalam judul (warna oranye) */
+.section-title span {
+    color: var(--warna-utama);
 }
 
-#experience{
+
+/* ================================================================
+   🏠 SECTION HOME
+   ================================================================ */
+#home {
+    /* ============================================================
+       🖼️ MENGGANTI BACKGROUND FOTO HOME
+       → Ganti URL di url(...) dengan path foto kamu
+       → Contoh: url('assets/foto-hero.jpg')
+       → Pastikan ukuran foto besar (minimal 1280px lebar)
+          agar tidak pecah
+    ============================================================ */
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(30, 24, 18, 0.75) 0%,   /* Gradien gelap di atas */
+            rgba(30, 24, 18, 0.5) 60%,
+            rgba(30, 24, 18, 0.9) 100%   /* Gelap di bawah untuk mulus ke section berikutnya */
+        ),
+        url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600'); /* ← Ganti ini! */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efek parallax: gambar diam saat scroll */
+}
+
+/* Wrapper konten teks di tengah halaman Home */
+.hero-content {
+    text-align: center;
+    z-index: 2; /* Tampil di atas overlay */
+    animation: fadeUp 0.9s ease forwards; /* Animasi muncul saat halaman dibuka */
+}
+
+/* Animasi: elemen muncul dari bawah ke atas */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Teks kecil "👋 Halo, saya" */
+.hero-label {
+    font-size: 1.1rem;
+    color: rgba(255, 200, 120, 0.9);
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+/* Judul nama besar di Home */
+.hero-title {
+    font-family: var(--font-judul);
+    /* clamp(min, ideal, max) — ukuran responsif otomatis */
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    color: var(--warna-teks-putih);
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+/* Teks deskripsi singkat di bawah nama */
+.hero-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 500px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+}
+
+/* Wrapper untuk tombol-tombol CTA */
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap; /* Tombol pindah ke baris baru jika layar sempit */
+}
+
+/* Gaya dasar untuk semua tombol */
+.btn {
+    padding: 14px 32px;
+    border-radius: var(--radius-bulat);
+    font-family: var(--font-teks);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transisi);
+    border: 2px solid transparent;
+    display: inline-block;
+}
+
+/* Tombol utama (solid oranye) */
+.btn-primary {
+    background-color: var(--warna-utama);
+    color: var(--warna-teks-putih);
+    border-color: var(--warna-utama);
+}
+
+.btn-primary:hover {
+    background-color: var(--warna-utama-gelap);
+    border-color: var(--warna-utama-gelap);
+    transform: translateY(-2px); /* Efek "terangkat" saat hover */
+    box-shadow: 0 8px 25px rgba(255, 122, 0, 0.4);
+}
+
+/* Tombol outline (transparan dengan border) */
+.btn-outline {
+    background-color: transparent;
+    color: var(--warna-teks-putih);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--warna-teks-putih);
+    transform: translateY(-2px);
+}
+
+/* Hiasan gelombang SVG di bagian bawah section Home */
+.wave-bottom {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+}
+
+.wave-bottom svg {
+    width: 100%;
+    height: 80px;
+}
+
+
+/* ================================================================
+   👤 SECTION ABOUT
+   ================================================================ */
+#about {
+    background-color: var(--warna-latar-terang);
+    /* Pola titik-titik dekoratif di background */
+    background-image: radial-gradient(var(--warna-bayangan) 1.5px, transparent 1.5px);
+    background-size: 30px 30px;
+}
+
+/* Wrapper dua kolom (foto | teks) */
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 70px;                    /* Jarak antara foto dan teks */
+    max-width: 1000px;
+    width: 100%;
+}
+
+/* Wrapper foto profil (untuk posisi relative elemen anak) */
+.about-photo-wrapper {
+    position: relative;
+    flex-shrink: 0; /* Jangan mengecil saat ruang sempit */
+}
+
+/* Foto profil bulat */
+.about-photo {
+    /* ============================================================
+       📷 UKURAN FOTO PROFIL
+       → Ganti nilai width & height di bawah untuk memperbesar/kecil
+       → Keduanya harus sama agar tetap bulat
+    ============================================================ */
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;          /* Membuat kotak jadi lingkaran */
+    object-fit: cover;           /* Foto mengisi area tanpa terdistorsi */
+    object-position: center top; /* Fokus ke area wajah (atas tengah) */
+    border: 5px solid var(--warna-utama); /* Border oranye */
+    box-shadow: 0 15px 40px var(--warna-bayangan);
+    position: relative;
+    z-index: 2;
+}
+
+/* Cincin dekoratif yang sedikit digeser dari foto */
+.about-photo-ring {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 2px dashed var(--warna-utama);
+    opacity: 0.4;
+    /* Geser sedikit agar terlihat "berlapis" */
+    top: -10px;
+    left: -10px;
+    animation: putar 20s linear infinite; /* Cincin berputar pelan */
+}
+
+@keyframes putar {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Bagian teks kanan di section About */
+.about-text {
+    flex: 1; /* Isi sisa ruang yang tersedia */
+}
+
+/* Paragraf deskripsi di About */
+.about-desc {
+    font-size: 1rem;
+    color: var(--warna-teks-sekunder);
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+/* Wrapper badge-badge keahlian */
+.about-skills {
+    display: flex;
+    flex-wrap: wrap; /* Pindah baris jika tidak muat */
+    gap: 10px;
+    margin-top: 24px;
+}
+
+/* Setiap badge keahlian */
+.skill-badge {
+    background-color: var(--warna-utama);
+    color: var(--warna-teks-putih);
+    padding: 6px 18px;
+    border-radius: var(--radius-bulat);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+/* ================================================================
+   💼 SECTION EXPERIENCE — CAROUSEL
+   ================================================================ */
+#experience {
     background-color: var(--warna-latar-gelap);
+    padding-bottom: 80px;
 }
 
+/* Wrapper utama carousel */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 40px;
+    overflow: hidden;
+    border-radius: var(--radius);
+}
+
+/* Trek yang berisi semua slide (bisa digeser kiri-kanan) */
+.carousel-track {
+    display: flex;            /* Slide tersusun dalam satu baris */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Animasi geser mulus */
+    width: 100%;
+}
+
+/* Setiap slide carousel */
+.carousel-slide {
+    min-width: 100%;          /* Setiap slide selebar container */
+    height: 480px;
+    display: flex;
+    align-items: flex-end;    /* Konten ke bagian bawah slide */
+    justify-content: flex-start;
+    padding: 40px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Lapisan gelap di atas gambar slide */
+.carousel-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0; /* Sama dengan top:0; right:0; bottom:0; left:0; */
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.7) 0%,
+        rgba(0,0,0,0.1) 60%,
+        transparent 100%
+    );
+    border-radius: var(--radius);
+}
+
+/* ============================================================
+   🖼️ BACKGROUND GAMBAR TIAP SLIDE
+   → Ganti url('...') di bawah dengan foto kamu
+   → Bisa pakai foto lokal: url('assets/pengalaman1.jpg')
+   → Atau URL gambar dari internet
+============================================================ */
+.slide-1 {
+    background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200');
+}
+
+.slide-2 {
+    background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200');
+}
+
+.slide-3 {
+    background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200');
+}
+
+/* ============================================================
+   🪟 GLASSMORPHISM (Efek Kaca)
+   Kartu teks transparan dengan blur — khas desain modern
+   Cara mengatur:
+   → background: rgba(R,G,B, TRANSPARANSI) — lebih kecil = lebih transparan
+   → backdrop-filter: blur(Xpx) — lebih besar = lebih kabur
+============================================================ */
+.glass-card {
+    background: rgba(255, 255, 255, 0.12);  /* Putih sangat transparan */
+    backdrop-filter: blur(14px);            /* Efek blur kaca */
+    -webkit-backdrop-filter: blur(14px);    /* Untuk Safari/iOS */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Border putih tipis */
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    max-width: 480px;
+    position: relative; /* Agar tampil di atas lapisan gelap slide */
+    z-index: 2;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Ikon emoji di atas kartu */
+.exp-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Judul di dalam kartu */
+.glass-card h3 {
+    font-family: var(--font-judul);
+    font-size: 1.5rem;
+    color: var(--warna-teks-putih);
+    margin-bottom: 10px;
+}
+
+/* Deskripsi teks di dalam kartu */
+.glass-card p {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+/* Badge tahun di kartu */
+.exp-year {
+    display: inline-block;
+    background-color: var(--warna-utama);
+    color: white;
+    padding: 4px 14px;
+    border-radius: var(--radius-bulat);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Tombol panah kiri & kanan carousel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 1.2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: all var(--transisi);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 122, 0, 0.7);
+    border-color: var(--warna-utama);
+    transform: translateY(-50%) scale(1.1); /* Sedikit membesar saat hover */
+}
+
+.carousel-btn.prev { left: 16px; }
+.carousel-btn.next { right: 16px; }
+
+/* Wrapper titik-titik indikator slide */
+.carousel-dots {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+/* Setiap titik indikator */
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all var(--transisi);
+    border: none;
+    padding: 0;
+}
+
+/* Titik aktif (slide yang sedang ditampilkan) */
+.dot.active {
+    background-color: var(--warna-utama);
+    width: 24px;         /* Titik aktif berbentuk kapsul memanjang */
+    border-radius: 4px;
+}
+
+
+/* ================================================================
+   📞 SECTION CONTACT
+   ================================================================ */
 #contact {
     background-color: var(--warna-latar-terang);
+    background-image: radial-gradient(var(--warna-bayangan) 1.5px, transparent 1.5px);
+    background-size: 30px 30px;
 }
 
-@media screen and (max-width: 720px) {
-    .nav-links{
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background-color: var(--warna-utama);
-        width: 100%;
-        text-align: center;
-        padding-bottom: 20px;
+/* Teks deskripsi di bawah judul Contact */
+.contact-subtitle {
+    font-size: 1rem;
+    color: var(--warna-teks-sekunder);
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* Wrapper semua kartu kontak */
+.contact-cards {
+    display: flex;
+    flex-direction: column; /* Susun kartu secara vertikal */
+    gap: 16px;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Setiap kartu kontak — merupakan link <a> */
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: all var(--transisi);
+
+    /* === GLASSMORPHISM VERSI TERANG === */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 20px var(--warna-bayangan);
+}
+
+/* Efek hover kartu kontak */
+.contact-card:hover {
+    transform: translateX(8px); /* Geser ke kanan saat hover */
+    box-shadow: 0 8px 30px var(--warna-bayangan);
+}
+
+/* Warna aksen kiri tiap platform (garis vertikal) */
+.contact-card.wa  { border-left: 4px solid #25D366; } /* Hijau WhatsApp */
+.contact-card.ig  { border-left: 4px solid #E1306C; } /* Pink Instagram */
+.contact-card.fb  { border-left: 4px solid #1877F2; } /* Biru Facebook */
+
+/* Lingkaran ikon di kiri kartu */
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Ukuran SVG ikon */
+.contact-icon svg {
+    width: 26px;
+    height: 26px;
+}
+
+/* Warna ikon dan background lingkaran per platform */
+.wa  .contact-icon { background: rgba(37, 211, 102, 0.12);  color: #25D366; }
+.ig  .contact-icon { background: rgba(225, 48,  108, 0.12); color: #E1306C; }
+.fb  .contact-icon { background: rgba(24,  119, 242, 0.12); color: #1877F2; }
+
+/* Teks nama platform dan handle/nomor */
+.contact-info {
+    flex: 1; /* Isi ruang sisa agar panah terdorong ke kanan */
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contact-platform {
+    font-size: 0.8rem;
+    color: var(--warna-teks-sekunder);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-handle {
+    font-size: 1rem;
+    color: var(--warna-teks-utama);
+    font-weight: 600;
+}
+
+/* Panah → di kanan kartu */
+.contact-arrow {
+    font-size: 1.2rem;
+    color: var(--warna-teks-sekunder);
+    transition: transform var(--transisi);
+}
+
+/* Panah bergerak ke kanan saat hover */
+.contact-card:hover .contact-arrow {
+    transform: translateX(5px);
+    color: var(--warna-utama);
+}
+
+/* Teks kecil copyright di footer */
+.footer-text {
+    margin-top: 60px;
+    font-size: 0.85rem;
+    color: var(--warna-teks-sekunder);
+    text-align: center;
+    opacity: 0.7;
+}
+
+
+/* ================================================================
+   📱 RESPONSIVE — TAMPILAN MOBILE (layar ≤ 768px)
+   Semua penyesuaian untuk perangkat kecil ada di sini
+   ================================================================ */
+@media screen and (max-width: 768px) {
+
+    /* Navbar berubah ke tampilan hamburger */
+    nav {
+        padding: 0 24px;
     }
 
-    .nav-links.tampil{
+    /* Menu navigasi tersembunyi secara default di mobile */
+    .nav-links {
+        display: none;              /* Tersembunyi sampai tombol burger diklik */
+        flex-direction: column;     /* Susun menu secara vertikal */
+        position: absolute;
+        top: 70px;                  /* Tepat di bawah navbar */
+        left: 0;
+        right: 0;
+        background-color: var(--warna-utama);
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        z-index: 99;
+    }
+
+    /* Kelas .tampil ditambahkan oleh JS saat burger diklik */
+    .nav-links.tampil {
         display: flex;
     }
 
-    .nav-links li{
-        margin: 15px 0;
+    .nav-links li a {
+        padding: 14px 20px;
+        font-size: 1rem;
+        display: block;
     }
 
-    .burger{
-        display: block;
+    /* Tampilkan tombol hamburger */
+    .burger {
+        display: flex;
+    }
+
+    /* Section umum lebih sedikit padding di mobile */
+    .hero {
+        padding: 90px 24px 50px;
+    }
+
+    /* About: ubah dari 2 kolom menjadi 1 kolom (vertikal) */
+    .about-container {
+        flex-direction: column;  /* Foto di atas, teks di bawah */
+        gap: 36px;
+        text-align: center;
+    }
+
+    /* Badge keahlian rata tengah di mobile */
+    .about-skills {
+        justify-content: center;
+    }
+
+    /* Foto profil lebih kecil di mobile */
+    .about-photo {
+        width: 200px;
+        height: 200px;
+    }
+
+    .about-photo-ring {
+        width: 218px;
+        height: 218px;
+    }
+
+    /* Slide carousel lebih pendek di mobile */
+    .carousel-slide {
+        height: 400px;
+        padding: 24px;
+        align-items: flex-end;
+    }
+
+    /* Kartu glassmorphism lebih kecil di mobile */
+    .glass-card {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .glass-card h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Tombol carousel lebih kecil di mobile */
+    .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
     }
 }
